@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Heroe escape</title>
+
+  <link rel="manifest" href="manifest.json">
+
+
+
+  <!-- Hoja de estilos -->
+  <link rel="stylesheet" href="materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+
+  <script src="js/howler.core.js"></script>
+  <script src='js/juego.js'></script>
+  <style>
+    @font-face {
+      font-family: "fuente";
+      src: url("PressStart2P.woff") format("woff"), url("PressStart2P.ttf") format("truetype")
+    }
+
+    body {
+      font-family: fuente !important;
+      height: 100vh;
+    }
+  </style>
+
+</head>
+
+<body onload='inicializa();'
+  style="background-image: repeating-linear-gradient(135deg, rgb(0,0,0) 0px, rgb(0,0,0) 10px,transparent 10px, transparent 11px),repeating-linear-gradient(22.5deg, rgb(0,0,0) 0px, rgb(0,0,0) 10px,transparent 10px, transparent 11px),linear-gradient(90deg, hsl(194,74%,56%),hsl(266,74%,56%),hsl(338,74%,56%),hsl(50,74%,56%),hsl(122,74%,56%)); ">
+
+  <nav class="">
+    <div class="nav-wrapper blue-grey">
+      
+      <ul id="nav-mobile" class="right hide-on-med-and-down container">
+        <li><a onclick="cambiaStilo(1);" >Estilo 1</a></li>
+        <li><a onclick="cambiaStilo(2);">Estilo 2</a></li>
+        <li><a onclick="cambiaStilo(3);">Estilo 3</a></li>
+        <li><a class="modal-trigger" href="#modal1">Ayuda</a></li>
+      </ul>
+    </div>
+  </nav>
+
+
+
+  <br>
+  <div class=" container">
+    <center>
+      <canvas id='canvas' width='750' height='500' style='border:2px solid #000000;'></canvas>
+    </center>
+
+
+    <div class="row">
+
+      <div class="col s6 m6">
+        <div class="card blue-grey">
+          <div class="card-content white-text">
+            
+            <h5 class="card-title center">Nivel</h5>
+            <h5 class="center" id="nivel"></h5>
+          </div>
+          <!-- <div class="card-action">
+            <a href="#">Compartir</a>
+
+          </div> -->
+        </div>
+      </div>
+      <div class="col s6 m6">
+        <div class="card blue-grey">
+          <div class="card-content white-text">
+            <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">share</i></a>
+            <h5 class="card-title center">Maximo</h5>
+            <h5 class="center" id="maximo"></h5>
+          </div>
+          <!-- <div class="card-action">
+            <a href="#">Compartir</a>
+
+          </div> -->
+        </div>
+      </div>
+    </div>
+
+
+    <!-- <a class="btn-floating btn-large waves-effect waves-light right green darken-3 modal-trigger" href="#modal1"><i
+        class="material-icons">help_outline</i></a> -->
+
+
+
+  </div> <!-- finaliza container -->
+
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Bienvenido!!!</h4>
+      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eveniet minima officiis ipsa quis, deleniti dicta
+        asperiores eum nulla, qui quae quisquam excepturi. Non assumenda eum sequi quaerat ex inventore modi.</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Empezar</a>
+    </div>
+  </div>
+
+
+
+
+  <!-- script materialize.css -->
+  <script src="materialize.min.js"></script>
+
+  <script>
+    M.AutoInit();
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('.modal');
+      var instances = M.Modal.init(elems, options);
+    });
+
+  </script>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      console.log("El Navegador admite service workers");
+      window.addEventListener('load', function () {
+        //navigator.serviceWorker.register('sw_offlinepage.js')
+        //navigator.serviceWorker.register('sw_offlinesite.js')
+        navigator.serviceWorker.register('js/sw.js')
+
+          .then(function (registration) {
+            console.log('Service worker registrado de modo correcto');
+            console.log('Scope: ' + registration.scope)
+          }, function (error) {
+            console.log('El registro del Service worker ha fallado');
+            console.log(error)
+          });
+      });
+    }
+  </script>
+</body>
+
+</html>
